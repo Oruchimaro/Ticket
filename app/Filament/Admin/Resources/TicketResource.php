@@ -48,12 +48,6 @@ class TicketResource extends Resource
                             ->preload()
                             ->optionsLimit(10)
                             ->required(),
-                        Select::make('assigned_by')
-                            ->relationship('assignedBy', 'name')
-                            ->searchable()
-                            ->preload()
-                            ->optionsLimit(10)
-                            ->required(),
                     ]),
                 Textarea::make('comment')
                     ->rows(3)
