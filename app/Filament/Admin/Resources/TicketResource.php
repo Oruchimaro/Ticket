@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Resources;
 use App\Enums\TicketPriorityEnum;
 use App\Enums\TicketStatusEnum;
 use App\Filament\Admin\Resources\TicketResource\Pages;
+use App\Filament\Admin\Resources\TicketResource\RelationManagers\CategoriesRelationManager;
 use App\Models\Ticket;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Section;
@@ -104,7 +105,7 @@ class TicketResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            CategoriesRelationManager::class,
         ];
     }
 

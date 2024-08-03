@@ -33,4 +33,9 @@ class Ticket extends Model
             'priority' => TicketPriorityEnum::class,
         ];
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }
