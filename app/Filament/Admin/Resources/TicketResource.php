@@ -14,7 +14,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 class TicketResource extends Resource
 {
@@ -47,7 +49,8 @@ class TicketResource extends Resource
                             ->searchable()
                             ->preload()
                             ->optionsLimit(10)
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
                     ]),
                 Textarea::make('comment')
                     ->rows(3)
@@ -59,13 +62,8 @@ class TicketResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('assigned_to')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('assigned_by')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('title')
+                    ->description(fn (Ticket $record): string => Str::limit($record->description, Ticket::EXCERPT_LENGTH))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
@@ -73,6 +71,13 @@ class TicketResource extends Resource
                 Tables\Columns\TextColumn::make('priority')
                     ->badge()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('assignedTo.name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('assignedBy.name')
+                    ->searchable()
+                    ->sortable(),
+                TextInputColumn::make('comment'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -87,6 +92,7 @@ class TicketResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

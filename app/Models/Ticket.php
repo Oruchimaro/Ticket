@@ -13,6 +13,8 @@ class Ticket extends Model
     use HasFactory;
     use TicketRelationTrait;
 
+    const EXCERPT_LENGTH = 45;
+
     protected $fillable = [
         'assigned_to',
         'assigned_by',
