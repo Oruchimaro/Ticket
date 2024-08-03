@@ -41,10 +41,12 @@ class TicketResource extends Resource
                     ->schema([
                         Radio::make('status')
                             ->required()
-                            ->options(TicketStatusEnum::class),
+                            ->options(TicketStatusEnum::class)
+                            ->in(TicketStatusEnum::class), // validate value be in the enum
                         Radio::make('priority')
                             ->required()
-                            ->options(TicketPriorityEnum::class),
+                            ->options(TicketPriorityEnum::class)
+                            ->in(TicketPriorityEnum::class), // validate value be in the enum
                         Select::make('assigned_to')
                             ->relationship('assignedTo', 'name')
                             ->searchable()
@@ -88,9 +90,7 @@ class TicketResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

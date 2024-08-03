@@ -52,9 +52,7 @@ class CategoryResource extends Resource
                 ToggleColumn::make('is_active')
                     ->label('Active?'),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
@@ -68,9 +66,7 @@ class CategoryResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
