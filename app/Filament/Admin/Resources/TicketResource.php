@@ -88,7 +88,8 @@ class TicketResource extends Resource
                 Tables\Columns\TextColumn::make('assignedBy.name')
                     ->searchable()
                     ->sortable(),
-                TextInputColumn::make('comment'),
+                TextInputColumn::make('comment')
+                    ->disabled(! auth()->user()->hasPermission('ticket_edit')), // add editable input in table row
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
