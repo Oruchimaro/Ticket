@@ -42,11 +42,19 @@ class TicketResource extends Resource
                         Radio::make('status')
                             ->required()
                             ->options(TicketStatusEnum::class)
-                            ->in(TicketStatusEnum::class), // validate value be in the enum
+                            ->in([
+                                TicketStatusEnum::OPEN,
+                                TicketStatusEnum::CLOSED,
+                                TicketStatusEnum::ARCHIVED,
+                            ]), // validate value be in the enum
                         Radio::make('priority')
                             ->required()
                             ->options(TicketPriorityEnum::class)
-                            ->in(TicketPriorityEnum::class), // validate value be in the enum
+                            ->in([
+                                TicketPriorityEnum::LOW,
+                                TicketPriorityEnum::MEDIUM,
+                                TicketPriorityEnum::HIGH,
+                            ]), // validate value be in the enum
                         Select::make('assigned_to')
                             ->relationship('assignedTo', 'name')
                             ->searchable()
