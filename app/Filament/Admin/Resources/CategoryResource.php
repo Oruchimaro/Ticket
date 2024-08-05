@@ -55,8 +55,8 @@ class CategoryResource extends Resource
             ])
             ->filters([])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make()->successNotificationTitle(__('Category updated successfully')),
+                Tables\Actions\DeleteAction::make()->successNotificationTitle(__('Category deleted successfully')),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
