@@ -27,7 +27,7 @@ class CategoryResource extends Resource
                 TextInput::make('name')
                     ->autofocus()
                     ->required()
-                    ->unique()
+                    ->unique(ignoreRecord: true)
                     ->lazy()
                     ->afterStateUpdated(
                         fn (Set $set, ?string $state) => $set('slug', str()->slug($state))
