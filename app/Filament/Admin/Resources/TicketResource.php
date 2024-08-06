@@ -18,6 +18,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextInputColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -90,12 +91,15 @@ class TicketResource extends Resource
                     ->badge()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('assignedTo.name')
+                    ->toggleable()
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('assignedBy.name')
+                    ->toggleable()
                     ->searchable()
                     ->sortable(),
                 TextInputColumn::make('comment')
+                    ->toggleable()
                     ->disabled(! auth()->user()->hasPermission('ticket_edit')), // add editable input in table row
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -106,7 +110,15 @@ class TicketResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([])
+            ->defaultSort('created_at', 'desc')
+            ->filters([
+                SelectFilter::make('status')
+                    ->options(TicketStatusEnum::class)
+                    ->placeholder(__('Filter By Status')),
+                SelectFilter::make('priority')
+                    ->options(TicketPriorityEnum::class)
+                    ->placeholder(__('Filter By Priority')),
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
