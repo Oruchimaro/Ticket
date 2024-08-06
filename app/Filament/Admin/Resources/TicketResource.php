@@ -6,7 +6,9 @@ use App\Enums\TicketPriorityEnum;
 use App\Enums\TicketStatusEnum;
 use App\Filament\Admin\Resources\TicketResource\Pages;
 use App\Filament\Admin\Resources\TicketResource\RelationManagers\CategoriesRelationManager;
+use App\Models\Role;
 use App\Models\Ticket;
+use App\Models\User;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -17,6 +19,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class TicketResource extends Resource
@@ -56,7 +59,11 @@ class TicketResource extends Resource
                                 TicketPriorityEnum::HIGH,
                             ]), // validate value be in the enum
                         Select::make('assigned_to')
-                            ->relationship('assignedTo', 'name')
+                            ->options(
+                                User::whereHas(
+                                    'roles',
+                                    fn (Builder $query) => $query->where('name', Role::ROLES['Agent']))->pluck('name', 'id')->toArray()
+                            )
                             ->searchable()
                             ->preload()
                             ->optionsLimit(10)
