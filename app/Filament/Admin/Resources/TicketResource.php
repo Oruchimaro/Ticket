@@ -80,9 +80,17 @@ class TicketResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('created_at', 'desc')
+            ->modifyQueryUsing(
+                fn (Builder $query) => auth()->user()->hasRole(Role::ROLES['Admin'])
+                ? $query
+                : $query->where('assigned_to', auth()->id())
+            )
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->description(fn (Ticket $record): string => Str::limit($record->description, Ticket::EXCERPT_LENGTH))
+                    ->description(
+                        fn (Ticket $record): ?string => Str::limit($record?->description, Ticket::EXCERPT_LENGTH)
+                    )
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
@@ -110,7 +118,6 @@ class TicketResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('created_at', 'desc')
             ->filters([
                 SelectFilter::make('status')
                     ->options(TicketStatusEnum::class)
