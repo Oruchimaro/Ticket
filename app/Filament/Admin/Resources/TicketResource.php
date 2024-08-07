@@ -92,8 +92,8 @@ class TicketResource extends Resource
                         fn (Ticket $record): ?string => Str::limit($record?->description, Ticket::EXCERPT_LENGTH)
                     )
                     ->searchable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->badge()
+                Tables\Columns\SelectColumn::make('status')
+                    ->options(TicketStatusEnum::class)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('priority')
                     ->badge()
