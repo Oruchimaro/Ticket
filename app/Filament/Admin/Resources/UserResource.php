@@ -6,6 +6,7 @@ use App\Filament\Admin\Resources\UserResource\Pages;
 use App\Filament\Admin\Resources\UserResource\RelationManagers\RolesRelationManager;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -32,6 +33,10 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\DateTimePicker::make('email_verified_at'),
+                TextInput::make('password')
+                    ->password()
+                    ->required()
+                    ->hiddenOn(['edit']),
             ])->columns(1);
     }
 
