@@ -5,14 +5,21 @@ namespace App\Filament\Admin\Resources;
 use App\Filament\Admin\Resources\UserResource\Pages;
 use App\Filament\Admin\Resources\UserResource\RelationManagers\RolesRelationManager;
 use App\Models\User;
+use App\Services\TextMessageService;
 use Filament\Forms;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
+use Filament\Tables\Actions\BulkAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Collection;
 
 class UserResource extends Resource
 {
@@ -89,7 +96,27 @@ class UserResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    BulkAction::make('sendBulkSms')
+                        ->modalSubmitActionLabel('send message')
+                        ->icon('heroicon-s-chat-bubble-left-ellipsis')
+                        ->deselectRecordsAfterCompletion()
+                        ->color(Color::Blue)
+                        ->form([
+                            Textarea::make('message')
+                                ->placeholder('Enter Message Here...')
+                                ->required()
+                                ->rows(4),
+                            Textarea::make('remarks'),
+                        ])
+                        ->action(function (array $data, Collection $collection) {
+                            TextMessageService::sendMessage($data, $collection);
+
+                            Notification::make()
+                                ->title('Message Sent Successfully')
+                                ->success()
+                                ->send();
+                        }),
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
