@@ -15,6 +15,7 @@ class PermissionsTableSeeder extends Seeder
             'category',
             'ticket',
             'user',
+            'text_message',
         ];
 
         $insertData = [];
