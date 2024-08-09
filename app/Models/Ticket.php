@@ -4,10 +4,13 @@ namespace App\Models;
 
 use App\Enums\TicketPriorityEnum;
 use App\Enums\TicketStatusEnum;
+use App\Observers\TicketObserver;
 use App\Traits\Models\Relations\TicketRelationTrait;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+#[ObservedBy([TicketObserver::class])]
 class Ticket extends Model
 {
     use HasFactory;
@@ -32,10 +35,5 @@ class Ticket extends Model
             'status' => TicketStatusEnum::class,
             'priority' => TicketPriorityEnum::class,
         ];
-    }
-
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class);
     }
 }

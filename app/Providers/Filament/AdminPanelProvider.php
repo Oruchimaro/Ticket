@@ -60,6 +60,8 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
         // ->sidebarFullyCollapsibleOnDesktop()
-            ->sidebarCollapsibleOnDesktop();
+            ->sidebarCollapsibleOnDesktop()
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('30s');
     }
 }
