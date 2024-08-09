@@ -9,6 +9,7 @@ use App\Filament\Admin\Resources\TicketResource\RelationManagers\CategoriesRelat
 use App\Models\Role;
 use App\Models\Ticket;
 use App\Models\User;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -40,6 +41,7 @@ class TicketResource extends Resource
                 Textarea::make('description')
                     ->rows(3)
                     ->columnSpanFull(),
+                FileUpload::make('attachment'),
                 Section::make('Select')
                     ->columns(2)
                     ->schema([

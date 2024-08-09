@@ -27,6 +27,7 @@ class Ticket extends Model
         'priority',
         'comment',
         'is_resolved',
+        'attachment',
     ];
 
     protected function casts()
