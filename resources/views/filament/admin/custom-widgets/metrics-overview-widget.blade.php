@@ -10,8 +10,8 @@
         'md:grid-cols-3' => $columns === 3,
         'md:grid-cols-2 xl:grid-cols-4' => $columns === 4,
     ])>
-        @foreach ($this->getCachedStats() as $stat)
-            {{ $stat }}
+        @foreach ($this->getCachedMetrics() as $metric)
+            @livewire($metric)
         @endforeach
     </div>
 </x-filament-widgets::widget>
