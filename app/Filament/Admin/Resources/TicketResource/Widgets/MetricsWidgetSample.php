@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Filament\Admin\CustomWidgets;
+namespace App\Filament\Admin\Resources\TicketResource\Widgets;
 
+use App\Filament\Admin\CustomWidgets\MetricWidget;
 use Illuminate\Contracts\Support\Htmlable;
 
 class MetricsWidgetSample extends MetricWidget
