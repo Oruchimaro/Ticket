@@ -43,7 +43,7 @@
 
             @if ($filters = $this->getFilters())
                 <x-filament::input.wrapper>
-                    <x-filament::input.select wire:model.live='filters'>
+                    <x-filament::input.select wire:model.live='filter'>
                         @foreach ($filters as $value => $label)
                             <option value="{{ $value }}">
                                 {{ $label }}

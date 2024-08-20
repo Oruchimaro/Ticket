@@ -16,12 +16,12 @@ class MetricWidget extends Widget
     /**
      * @var array<float> | null
      */
-    // protected ?array $chart = null;
+    protected ?array $chart = null;
 
     /**
      * @var string | array{50: string, 100: string, 200: string, 300: string, 400: string, 500: string, 600: string, 700: string, 800: string, 900: string, 950: string} | null
      */
-    // protected string|array|null $chartColor = null;
+    protected string|array|null $chartColor = null;
 
     /**
      * @var string | array{50: string, 100: string, 200: string, 300: string, 400: string, 500: string, 600: string, 700: string, 800: string, 900: string, 950: string} | null
@@ -57,21 +57,29 @@ class MetricWidget extends Widget
 
     public ?string $filter = null;
 
+    public function updated($property)
+    {
+
+        if ($property === 'filter') {
+            $this->getValue();
+        }
+    }
+
     /**
      * @return array<float> | null
      */
-    // public function getChart(): ?array
-    // {
-    //     return $this->chart;
-    // }
+    public function getChart(): ?array
+    {
+        return $this->chart;
+    }
 
     /**
      * @return string | array{50: string, 100: string, 200: string, 300: string, 400: string, 500: string, 600: string, 700: string, 800: string, 900: string, 950: string} | null
      */
-    // public function getChartColor(): string|array|null
-    // {
-    //     return $this->chartColor ?? $this->color;
-    // }
+    public function getChartColor(): string|array|null
+    {
+        return $this->chartColor ?? $this->color;
+    }
 
     /**
      * @return string | array{50: string, 100: string, 200: string, 300: string, 400: string, 500: string, 600: string, 700: string, 800: string, 900: string, 950: string} | null
