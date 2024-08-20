@@ -4,11 +4,11 @@ namespace App\Filament\Admin\CustomWidgets;
 
 use Illuminate\Contracts\Support\Htmlable;
 
-class MetricsWidgetSample extends MetricWidget
+class MetricsWidgetSample2 extends MetricWidget
 {
-    protected string|Htmlable $label = 'sample one';
+    protected string|Htmlable $label = 'sample two';
 
-    protected $value = 'value 1';
+    protected $value = 'value 2';
 
     protected function getMetrics(): array
     {
