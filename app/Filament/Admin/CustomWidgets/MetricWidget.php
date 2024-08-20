@@ -55,6 +55,8 @@ class MetricWidget extends Widget
      */
     protected $value;
 
+    public ?string $filter = null;
+
     /**
      * @return array<float> | null
      */
@@ -136,6 +138,11 @@ class MetricWidget extends Widget
     public function getValue()
     {
         return value($this->value);
+    }
+
+    protected function getFilters(): ?array
+    {
+        return null;
     }
 
     public function toHtml(): string
