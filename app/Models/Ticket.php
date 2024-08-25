@@ -37,4 +37,9 @@ class Ticket extends Model
             'priority' => TicketPriorityEnum::class,
         ];
     }
+
+    public static function scopeHigh($query)
+    {
+        return $query->where('priority', TicketPriorityEnum::HIGH);
+    }
 }

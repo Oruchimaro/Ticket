@@ -10,6 +10,7 @@ class MetricsOverviewSample extends MetricsOverviewWidget
     {
         return [
             MetricsWidgetSample::class,
+            MetricWidgetTest::class,
         ];
     }
 }
