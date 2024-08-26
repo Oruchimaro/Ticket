@@ -62,6 +62,7 @@ class AdminPanelProvider extends PanelProvider
         // ->sidebarFullyCollapsibleOnDesktop()
             ->sidebarCollapsibleOnDesktop()
             ->databaseNotifications()
-            ->databaseNotificationsPolling('30s');
+            ->databaseNotificationsPolling('30s')
+            ->viteTheme('resources/css/app.css');
     }
 }
