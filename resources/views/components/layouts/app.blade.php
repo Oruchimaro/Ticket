@@ -20,8 +20,10 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="container">
-    {{ $slot }}
+<body class="antialiased app">
+    <div class="container">
+        {{ $slot }}
+    </div>
     @filamentScripts
     @vite('resources/js/app.js')
 </body>

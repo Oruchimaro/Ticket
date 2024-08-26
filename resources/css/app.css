@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.app {
+	background-color: #d9dadb;
+}
+
 .container {
-	/* /* background: blue; */
-	margin: 200px;
+	margin: 3% auto;
+	padding: 2%;
 }
