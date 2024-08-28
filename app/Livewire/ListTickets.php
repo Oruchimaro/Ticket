@@ -76,7 +76,10 @@ class ListTickets extends Component implements HasForms, HasTable
                     ->placeholder(__('Filter By Priority')),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('edit')
+                    ->label('Edit')
+                    ->icon('heroicon-s-pencil')
+                    ->url(fn (Ticket $ticket) => route('tickets.edit', $ticket)),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
