@@ -11,7 +11,7 @@ class TicketObserver
     {
         Notification::make()
             ->title(__('A ticket has been assigned to you'))
-            ->body("Title : $ticket->title")
+            ->body("Title : {$ticket->title}")
             ->success()
             ->sendToDatabase($ticket->assignedTo); // recipient is agent (assignedTo)
     }

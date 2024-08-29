@@ -21,19 +21,19 @@ class PermissionsTableSeeder extends Seeder
         $insertData = [];
         foreach ($permissions as $permission) {
             $insertData[] = [
-                'name' => $permission.'_create',
+                'name' => $permission . '_create',
             ];
             $insertData[] = [
-                'name' => $permission.'_edit',
+                'name' => $permission . '_edit',
             ];
             $insertData[] = [
-                'name' => $permission.'_delete',
+                'name' => $permission . '_delete',
             ];
             $insertData[] = [
-                'name' => $permission.'_show',
+                'name' => $permission . '_show',
             ];
             $insertData[] = [
-                'name' => $permission.'_access',
+                'name' => $permission . '_access',
             ];
         }
 

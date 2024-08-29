@@ -15,11 +15,11 @@ class TicketsOverviewChart extends ChartWidget
 
     protected static ?string $description = 'Tickets created in this year';
 
-    protected int|string|array $columnSpan = 'full';
-
     protected static ?string $maxHeight = '250px';
 
     public ?string $filter = 'week';
+
+    protected int|string|array $columnSpan = 'full';
 
     protected function getData(): array
     {

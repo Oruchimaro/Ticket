@@ -19,13 +19,6 @@ class TextMessage extends Model
         'remarks',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'status' => TextMessageStatusEnum::class,
-        ];
-    }
-
     public function sentTo()
     {
         return $this->belongsTo(User::class, 'sent_to');
@@ -34,5 +27,12 @@ class TextMessage extends Model
     public function sentBy()
     {
         return $this->belongsTo(User::class, 'sent_by');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'status' => TextMessageStatusEnum::class,
+        ];
     }
 }

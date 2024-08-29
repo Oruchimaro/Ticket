@@ -8,9 +8,9 @@ use Illuminate\Contracts\Support\Htmlable;
 
 class MetricsWidgetSample extends MetricWidget
 {
-    protected string|Htmlable $label = 'Tickets Overview';
-
     public ?string $filter = 'week';
+
+    protected string|Htmlable $label = 'Tickets Overview';
 
     public function getValue()
     {

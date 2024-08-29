@@ -56,6 +56,11 @@ class UserLogin extends LivewireComponent implements HasForms
         return redirect()->intended(route('tickets.index'));
     }
 
+    public function render()
+    {
+        return view('livewire.user-login');
+    }
+
     protected function getRateLimitedNotification(TooManyRequestsException $exception): ?Notification
     {
         return Notification::make()
@@ -130,10 +135,5 @@ class UserLogin extends LivewireComponent implements HasForms
             'email' => $data['email'],
             'password' => $data['password'],
         ];
-    }
-
-    public function render()
-    {
-        return view('livewire.user-login');
     }
 }

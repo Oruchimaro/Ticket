@@ -13,6 +13,8 @@ class MetricWidget extends Widget
 {
     protected static string $view = 'filament.admin.custom-widgets.metric-widget';
 
+    public ?string $filter = null;
+
     /**
      * @var array<float> | null
      */
@@ -54,8 +56,6 @@ class MetricWidget extends Widget
      * @var scalar | Htmlable | Closure
      */
     protected $value;
-
-    public ?string $filter = null;
 
     public function updated($property)
     {
@@ -148,11 +148,6 @@ class MetricWidget extends Widget
         return value($this->value);
     }
 
-    protected function getFilters(): ?array
-    {
-        return null;
-    }
-
     public function toHtml(): string
     {
         return $this->render()->render();
@@ -160,6 +155,11 @@ class MetricWidget extends Widget
 
     public function generateDataChecksum(): string
     {
-        return md5(json_encode($this->getChart()).now());
+        return md5(json_encode($this->getChart()) . now());
+    }
+
+    protected function getFilters(): ?array
+    {
+        return null;
     }
 }

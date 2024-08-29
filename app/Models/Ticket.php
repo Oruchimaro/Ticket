@@ -30,16 +30,16 @@ class Ticket extends Model
         'attachment',
     ];
 
+    public static function scopeHigh($query)
+    {
+        return $query->where('priority', TicketPriorityEnum::HIGH);
+    }
+
     protected function casts()
     {
         return [
             'status' => TicketStatusEnum::class,
             'priority' => TicketPriorityEnum::class,
         ];
-    }
-
-    public static function scopeHigh($query)
-    {
-        return $query->where('priority', TicketPriorityEnum::HIGH);
     }
 }

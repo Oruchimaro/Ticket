@@ -159,7 +159,7 @@ class MakeMetricWidgetCommand extends Command
         //create the file
         $this->copyStubToApp('MetricWidget', $path, [
             'class' => $widgetClass,
-            'namespace' => filled($resource) ? "{$resourceNamespace}\\{$resource}\\Widgets".($widgetNamespace !== '' ? "\\{$widgetNamespace}" : '') : $namespace.($widgetNamespace !== '' ? "\\{$widgetNamespace}" : ''),
+            'namespace' => filled($resource) ? "{$resourceNamespace}\\{$resource}\\Widgets" . ($widgetNamespace !== '' ? "\\{$widgetNamespace}" : '') : $namespace . ($widgetNamespace !== '' ? "\\{$widgetNamespace}" : ''),
             'view' => $view,
         ]);
 
