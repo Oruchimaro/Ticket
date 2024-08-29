@@ -2,3 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
  ./vendor/bin/sail php ./vendor/bin/duster fix --dirty
+ ./vendor/bin/sail npx prettier --write resources/
