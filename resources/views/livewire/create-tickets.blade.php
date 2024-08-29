@@ -1,4 +1,4 @@
-<div>
+<x-filament::section class="items-center justify-center mx-auto max-w-7xl">
     <x-slot name="heading">
         Create Ticket
     </x-slot>
@@ -10,4 +10,4 @@
             Submit
         </x-filament::button>
     </form>
-</div>
+</x-filament::section>
