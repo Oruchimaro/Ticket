@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
- ./vendor/bin/sail php ./vendor/bin/duster fix
+ ./vendor/bin/sail php ./vendor/bin/duster fix --dirty
