@@ -27,6 +27,9 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->registration()
+            ->emailVerification() // enable email verification
+            ->passwordReset() // have resetpassword link on login page
+            ->profile() // edit profile
             ->font('Oswald')
             ->colors([
                 'secondary' => Color::Blue,
